@@ -98,7 +98,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Descriptions too (`searchDescriptions`) | Finds your words in each job's description too, not only the title |
 | Only these startups (`companies`) | Startup names or Wellfound company links, found among the jobs the run reads |
 | Job links to check (`jobUrls`) | Paste job links to check whether they are still open, instead of searching |
-| Connection (`proxyConfiguration`) | Leave it off; turn on Apify Proxy when a run says Wellfound refused the address, or for full details of more than about 80 jobs |
+| Connection (`proxyConfiguration`) | Leave it off; turn on Apify Proxy when a run says Wellfound refused the address, or for full details of more than about 60 jobs |
 
 Example input:
 
@@ -167,7 +167,7 @@ Full details add `description`, `descriptionHtml`, `visaSponsorship`, `relocatio
 
 ## How fast is it?
 
-Seconds for a role or a city, about a minute for all of Wellfound. Measured on Apify at the default 512 MB on 2026-11-10: the example input read 89 pages in 9.5 s; product manager in New York City 11 pages in 3.5 s; the empty form, every job on Wellfound, 578 pages in 60 s with a 221 MB memory peak; every job of the last 30 days, 4,060 rows in 72 s. Full details read each saved job's page once more, and Wellfound slows one address down after about 80 of them: 9 remote machine learning jobs with details took 2.7 s, 100 jobs 274 s without a proxy and 135 s with Apify Proxy.
+Seconds for a role or a city, about a minute for all of Wellfound. Measured on Apify at the default 512 MB on 2026-11-10: the example input read 89 pages in 9.5 s; product manager in New York City 11 pages in 3.5 s; the empty form, every job on Wellfound, 578 pages in 60 s with a 221 MB memory peak; every job of the last 30 days, 4,060 rows in 72 s. Full details read each saved job's page once more, and Wellfound slows one address down after about 60 of them: 9 remote machine learning jobs with details took 2.7 s, 100 jobs 274 s without a proxy and 135 s with Apify Proxy.
 
 ## Common questions
 
@@ -217,7 +217,7 @@ Wellfound Jobs Scraper says why in the run's message and in its `OUTPUT` record,
 
 ### Does it need a login, a proxy or an API key?
 
-Wellfound Jobs Scraper needs no Wellfound login, no proxy and no API key, because it reads the public search pages wellfound.com serves to every visitor. Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages from it in 15 minutes (measured on 2026-11-10); a run that meets it slows down, waits, and then saves what it read and says so. Turn on Apify Proxy in Connection (`proxyConfiguration`) if a run says so, or for full details of more than about 80 jobs: Wellfound lets one address open about 80 job pages before it slows it down, and on Apify 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy (2026-11-10). The proxy does not change the price.
+Wellfound Jobs Scraper needs no Wellfound login, no proxy and no API key, because it reads the public search pages wellfound.com serves to every visitor. Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages from it in 15 minutes (measured on 2026-11-10); a run that meets it slows down, waits, and then saves what it read and says so. Turn on Apify Proxy in Connection (`proxyConfiguration`) if a run says so, or for full details of more than about 60 jobs: Wellfound lets one address open about 60 job pages before it slows it down, and on Apify 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy (2026-11-10). The proxy does not change the price.
 
 ### Does it work on Apify's free plan?
 
@@ -285,7 +285,7 @@ Wellfound Jobs Scraper reads public job postings that Wellfound shows to every v
 - Pay is shown on 64% of jobs, an equity range on 15%, years of experience on 64% and a startup stage on 43% (12,460 jobs, 2026-11-10).
 - A sign several currencies share (¥, ₨, kr) gives no currency on a search row; full details read it from the job page.
 - About 2 in 100 job pages carry no structured data (2 of 139 opened on 2026-11-10). Wellfound Jobs Scraper reads those jobs from the page itself: their full details lack the company website, markets and each place's country, and a checked link to one has no posting time, which such a page shows only as "5 days ago".
-- Visa sponsorship, relocation, time zones, skills, markets and funding come with full details only, one more page per job. Wellfound slows one address down after about 80 job pages: on Apify, 100 jobs with details took 274 s without a proxy, 135 s with Apify Proxy (2026-11-10).
+- Visa sponsorship, relocation, time zones, skills, markets and funding come with full details only, one more page per job. Wellfound slows one address down after about 60 job pages: on Apify, 100 jobs with details took 274 s without a proxy, 135 s with Apify Proxy (2026-11-10).
 - Wellfound's Cloudflare serves each search page from a copy it refreshes about once a day (copies 4 to 23 hours old on 2026-11-10), so a job posted in the last hours can be missing until its page refreshes. Rows come newest first among the jobs those pages show.
 - A title no Wellfound role fits, and a place with no Wellfound page, read every job on Wellfound, about a minute.
 - Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages in 15 minutes (2026-11-10). A run that meets it saves what it read and says so.

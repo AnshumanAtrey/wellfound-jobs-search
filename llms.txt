@@ -38,7 +38,7 @@ Apify's free $5 monthly credit covers about 54,000 jobs in runs of 100.
 
 ## Speed
 
-Measured on Apify at the default 512 MB on 2026-11-10: the example input (software engineer, 89 search pages) 9.5 s, the empty form (every job on Wellfound, 578 pages) 60 s, product manager in New York City 3.5 s, every job of the last 30 days (4,060 rows) 72 s with a 238 MB memory peak. Full details open one job page per job, and Wellfound slows one address down after about 80 of them: 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy.
+Measured on Apify at the default 512 MB on 2026-11-10: the example input (software engineer, 89 search pages) 9.5 s, the empty form (every job on Wellfound, 578 pages) 60 s, product manager in New York City 3.5 s, every job of the last 30 days (4,060 rows) 72 s with a 238 MB memory peak. Full details open one job page per job, and Wellfound slows one address down after about 60 of them: 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy.
 
 ## When to use
 
