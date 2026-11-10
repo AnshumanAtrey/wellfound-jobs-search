@@ -1,5 +1,6 @@
 {
-    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) by CI after every deploy. No actorId yet: the first CI push creates the Actor, private, and its ID goes here (Phase B of jobs batch 3). isPublic stays false until the owner says go. The prices below are placeholders until they are measured on Apify: pricing apply is false, so CI sends none.",
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) by CI after every deploy. actorId pins the Actor that the first CI push created on 2026-11-10 (build 1.0.1), so a rename in actor.json updates the same Actor. isPublic stays false until the owner says go. The prices below are placeholders until they are measured on Apify: pricing apply is false, so CI sends none.",
+    "actorId": "b93laTcCttdlJIKzO",
     "seoTitle": "Wellfound Jobs Scraper - Startup Salary & Equity",
     "seoDescription": "Scrape Wellfound (AngelList) startup jobs by role, city and remote, newest first: salary, equity, startup stage, size and funding. No login or API key.",
     "exampleRunInput": {
