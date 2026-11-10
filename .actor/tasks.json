@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks, published on the Store by scripts/publish-tasks.mjs after a deploy once the Actor is public (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries wellfound. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "$comment": "Example tasks, published on the Store by scripts/publish-tasks.mjs after a deploy once the Actor is public (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries wellfound. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 1024,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "wellfound-jobs-last-24-hours",
+            "publish": false,
             "title": "Find the newest Wellfound startup jobs of the last 24 hours",
             "description": "Get every startup job posted on wellfound.com in the last day, newest first, with the startup, places, remote or office, pay and equity, startup stage and link. Schedule it daily for a fresh feed of new startup jobs.",
             "input": {
@@ -73,6 +74,7 @@
         },
         {
             "name": "wellfound-startup-jobs-san-francisco",
+            "publish": false,
             "title": "Find startup jobs in San Francisco on Wellfound",
             "description": "Get the newest startup jobs in San Francisco on wellfound.com, every role, with the startup, pay and equity, remote or office, startup stage and link.",
             "input": {
@@ -139,6 +141,7 @@
         },
         {
             "name": "wellfound-startup-jobs-bangalore",
+            "publish": false,
             "title": "Find startup jobs in Bangalore on Wellfound",
             "description": "Get the newest startup jobs in Bangalore (Bengaluru) on wellfound.com, every role, with the startup, pay in rupees, equity, years of experience and link.",
             "input": {
@@ -171,6 +174,7 @@
         },
         {
             "name": "wellfound-product-manager-jobs",
+            "publish": false,
             "title": "Find product manager jobs at startups on Wellfound",
             "description": "Get the newest product manager jobs on wellfound.com, with the startup, places, remote or office, pay and equity, startup stage and link.",
             "input": {
@@ -203,6 +207,7 @@
         },
         {
             "name": "wellfound-machine-learning-engineer-jobs",
+            "publish": false,
             "title": "Find machine learning and AI engineer jobs on Wellfound",
             "description": "Get the newest machine learning engineer and AI engineer jobs at startups on wellfound.com, with the startup, places, remote setting, pay, equity and link.",
             "input": {
@@ -236,6 +241,7 @@
         },
         {
             "name": "wellfound-high-paying-engineer-jobs",
+            "publish": false,
             "title": "Find startup engineer jobs paying $150k or more on Wellfound",
             "description": "Get the newest software engineer jobs on wellfound.com whose yearly pay reaches 150,000 US dollars, with the equity, the startup stage, places and link.",
             "input": {
@@ -268,6 +274,7 @@
         },
         {
             "name": "wellfound-early-stage-startup-jobs",
+            "publish": false,
             "title": "Find jobs at early-stage startups on Wellfound",
             "description": "Get the newest jobs at early-stage startups on wellfound.com, every role, with the startup, its size and badges, pay and equity, places and link.",
             "input": {
@@ -300,6 +307,7 @@
         },
         {
             "name": "wellfound-jobs-with-visa-and-funding",
+            "publish": false,
             "title": "Get Wellfound jobs with visa sponsorship, funding and details",
             "description": "Get the newest data scientist jobs on wellfound.com with full details: the description, visa sponsorship, relocation, time zones, skills, the startup markets and its funding rounds.",
             "input": {
