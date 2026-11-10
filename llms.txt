@@ -19,12 +19,26 @@ Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searche
 
 ## Pricing
 
-- $0.0027 per job (Job event; also one checked link that is closed or not found)
-- $0.0029 per job with full details (Job with details event)
-- $0.005 per run start, per GB of memory (Apify's Actor Start event)
+PAY_PER_EVENT model, platform usage included:
 
-Typical run, 100 newest jobs: $0.275
-Typical run, 100 jobs with full details: $0.295
+- Job: $0.000013 per saved job ($0.013 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.0002 per saved job with full details on ($0.20 per 1,000)
+- Run start: $0.0079 per GB of memory, charged by Apify when a run starts, so $0.0079 at the default 512 MB
+
+Wellfound Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.01 per 1,000 jobs. FREE users (Apify's Free plan) pay $0.000013 a job and $0.0002 with full details, BRONZE (Starter) $0.000013 and $0.0002, SILVER (Scale) $0.000011 and $0.00016, and GOLD (Business) and the enterprise tiers $0.00001 and $0.00012. The run start is a flat fee on every plan.
+
+Typical costs (Free plan price, default memory):
+
+- 100 newest jobs: $0.0092
+- 100 jobs with full details: $0.028
+- 1,000 jobs: $0.021
+- Every job of the last 30 days, 4,060 on 2026-11-10: $0.061
+
+Apify's free $5 monthly credit covers about 54,000 jobs in runs of 100.
+
+## Speed
+
+Measured on Apify at the default 512 MB on 2026-11-10: the example input (software engineer, 89 search pages) 9.5 s, the empty form (every job on Wellfound, 578 pages) 60 s, product manager in New York City 3.5 s, every job of the last 30 days (4,060 rows) 72 s with a 238 MB memory peak. Full details open one job page per job, and Wellfound slows one address down after about 80 of them: 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy.
 
 ## When to use
 

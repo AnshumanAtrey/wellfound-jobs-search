@@ -213,7 +213,7 @@
             "title": "Connection (proxyConfiguration)",
             "type": "object",
             "editor": "proxy",
-            "description": "Leave the connection as it is: Wellfound's search pages answer the run's own address. Turn on Apify Proxy only when a run says Wellfound's Cloudflare check refused the address; the run then moves to a fresh proxy address after a refusal.",
+            "description": "Leave the connection as it is: Wellfound's search pages answer the run's own address. Turn on Apify Proxy when a run says Wellfound's Cloudflare check refused the address, or for full details of more than about 80 jobs (Wellfound slows one address down after about 80 job pages); the run then moves to a fresh proxy address after a refusal.",
             "default": {
                 "useApifyProxy": false
             },

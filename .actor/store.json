@@ -12,13 +12,13 @@
     "isPublic": false,
     "defaultRunOptions": {
         "build": "latest",
-        "memoryMbytes": 1024,
+        "memoryMbytes": 512,
         "timeoutSecs": 1800
     },
-    "defaultRunOptions$comment": "Placeholder until Phase B measures the example input at 512 MB, 1 GB and 2 GB on Apify. Locally (2026-11-10) the empty form read 578 search pages in 48 s with a 193 MB peak.",
+    "defaultRunOptions$comment": "512 MB, measured on Apify 2026-11-10: the empty form (578 search pages, Apify's daily test) took 60 s at 512 MB against 55 s at 1 GB and 51 s at 2 GB, for 54% of 1 GB's compute; peaks 196 to 282 MB on all 15 runs, a 4,060-row run 238 MB. The example input takes 9.5 to 11.5 s at any size.",
     "pricing": {
-        "$comment": "Placeholders, not applied (apply false): Phase B prices by the owner's rule for jobs batch 3 (measured Apify cost plus an 80-100% markup by tier) and reports the house rule (5-15% under blackfalcondata/wellfound-scraper, $0.003 a job plus $0.005 a run) beside it.",
-        "apply": false,
+        "$comment": "Cost plus the owner's markup ladder for jobs batch 3 (FREE 100%, BRONZE 95%, SILVER 90%, GOLD 85%, PLATINUM and DIAMOND 80%), from 15 Apify runs of 2026-11-10 at the unit prices of docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md: a job row costs a dataset write plus 4.0e-7 CU, a detailed row 3.7e-4 CU more (one job page each, measured where Wellfound slowed the address down). PLATINUM and DIAMOND at GOLD's price, as Apify stores them. The start covers a run's fixed cost and is raised until every measured run clears 80% at every tier: the lowest, a 1 GB read of every page that saved no job, is 82%. The house rule (5-15% under blackfalcondata/wellfound-scraper, $0.003 a job and $0.005 a run) would be about $0.0027 a job and $0.0045 a run.",
+        "apply": true,
         "pricingInfos": [
             {
                 "pricingModel": "PAY_PER_EVENT",
@@ -31,22 +31,22 @@
                             "isPrimaryEvent": true,
                             "eventTieredPricingUsd": {
                                 "FREE": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.000013
                                 },
                                 "BRONZE": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.000013
                                 },
                                 "SILVER": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.000011
                                 },
                                 "GOLD": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.00001
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.00001
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.0027
+                                    "tieredEventPriceUsd": 0.00001
                                 }
                             }
                         },
@@ -55,29 +55,29 @@
                             "eventDescription": "One saved job row with full details on: everything in a Job row plus the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding, and the city, region and country.",
                             "eventTieredPricingUsd": {
                                 "FREE": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.0002
                                 },
                                 "BRONZE": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.0002
                                 },
                                 "SILVER": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.00016
                                 },
                                 "GOLD": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.00012
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.00012
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.0029
+                                    "tieredEventPriceUsd": 0.00012
                                 }
                             }
                         },
                         "apify-actor-start": {
                             "eventTitle": "Actor Start",
                             "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
-                            "eventPriceUsd": 0.005
+                            "eventPriceUsd": 0.0079
                         }
                     }
                 }

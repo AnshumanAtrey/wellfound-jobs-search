@@ -43,19 +43,22 @@ Every actor on the Apify Store that names Wellfound or AngelList in its title or
 
 ## How much does it cost to scrape Wellfound jobs?
 
-Pay per event: $2.70 per 1,000 jobs, or $2.90 per 1,000 with full details, plus $0.005 per run. Apify's free $5 monthly credit covers about 1,800 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.013 per 1,000 jobs, or $0.20 per 1,000 with full details, plus $0.0079 per run at the default 512 MB. Apify's free $5 monthly credit covers about 54,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0027 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.0029 | One saved job with full details on |
-| Run start | $0.005 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.005 at the default 1 GB |
+| Job | $0.000013 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.0002 | One saved job with full details on |
+| Run start | $0.0079 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0079 at the default 512 MB |
 
-| Run (default memory) | Cost |
+Wellfound Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.01 per 1,000 jobs. FREE users (Apify's Free plan) pay $0.000013 a job and $0.0002 with full details, BRONZE (Starter) $0.000013 and $0.0002, SILVER (Scale) $0.000011 and $0.00016, and GOLD (Business) and the enterprise tiers $0.00001 and $0.00012. Each price is what that row costs on Apify at that plan's own rates, measured on Apify runs, plus a markup of 100% on the Free plan that falls to 85% on Business. A job with details costs more because it opens the job's own page, and Wellfound serves those pages slowly to one address. The run start is a flat fee on every plan, $0.0079 per GB of memory, and the header never shows it.
+
+| Run (Free plan price, default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.275 |
-| 100 jobs with full details | $0.295 |
-| 1,000 jobs | $2.705 |
+| 100 newest jobs | $0.0092 |
+| 100 jobs with full details | $0.028 |
+| 1,000 jobs | $0.021 |
+| Every job of the last 30 days, 4,060 on 2026-11-10 | $0.061 |
 
 Number of jobs (`maxJobs`) and the run start set the most a run can cost, and a run stops at its spending limit with a message saying so.
 
@@ -71,9 +74,9 @@ Every actor on the Apify Store that names Wellfound or AngelList in its title or
 | orgupdate/wellfound-jobs-scraper | 54 | $0.005 | $0.002 | none stated |
 | gio21/wellfound-jobs-scraper | 53 | $0.003 | none | none stated |
 | radeance/wellfound-job-listings-scraper | 44 | $0.01 | $0.001 | none stated |
-| This actor | new | $0.0027, $0.0029 with details | $0.005 | none |
+| This actor | new | $0.000013, $0.0002 with details | $0.0079 | none |
 
-Where others are cheaper: memo23 costs less per job when you need no details, and a run that saves only a few jobs costs less on actors with a smaller start fee (clearpath, gio21, radeance). Where others do more: blackfalcondata, memo23 and clearpath can deliver only the jobs new since your last run and send alerts; memo23 and radeance add company profiles, and memo23 contact emails.
+Where others are cheaper: a run that saves one or two jobs costs less on clearpath or gio21, and a run of a single job on orgupdate, because their start fees are smaller or none. Where others do more: blackfalcondata, memo23 and clearpath can deliver only the jobs new since your last run and send alerts; memo23 and radeance add company profiles, and memo23 contact emails.
 
 ## Which inputs does it take?
 
@@ -95,7 +98,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Descriptions too (`searchDescriptions`) | Finds your words in each job's description too, not only the title |
 | Only these startups (`companies`) | Startup names or Wellfound company links, found among the jobs the run reads |
 | Job links to check (`jobUrls`) | Paste job links to check whether they are still open, instead of searching |
-| Connection (`proxyConfiguration`) | Leave it off; turn on Apify Proxy only when a run says Wellfound refused the address |
+| Connection (`proxyConfiguration`) | Leave it off; turn on Apify Proxy when a run says Wellfound refused the address, or for full details of more than about 80 jobs |
 
 Example input:
 
@@ -164,7 +167,7 @@ Full details add `description`, `descriptionHtml`, `visaSponsorship`, `relocatio
 
 ## How fast is it?
 
-Seconds for a role or a city, about a minute for all of Wellfound. Measured on 2026-11-10 from a laptop: the example input read 89 pages in 7 s; product manager in New York City 11 pages in 4 s; the empty form, every job on Wellfound, 578 pages in 51 s with a 246 MB memory peak; every job with no date limit, 12,460 rows in 57 s. Full details read each saved job's page once more: 9 remote machine learning jobs with details took 6 s.
+Seconds for a role or a city, about a minute for all of Wellfound. Measured on Apify at the default 512 MB on 2026-11-10: the example input read 89 pages in 9.5 s; product manager in New York City 11 pages in 3.5 s; the empty form, every job on Wellfound, 578 pages in 60 s with a 221 MB memory peak; every job of the last 30 days, 4,060 rows in 72 s. Full details read each saved job's page once more, and Wellfound slows one address down after about 80 of them: 9 remote machine learning jobs with details took 2.7 s, 100 jobs 274 s without a proxy and 135 s with Apify Proxy.
 
 ## Common questions
 
@@ -214,11 +217,11 @@ Wellfound Jobs Scraper says why in the run's message and in its `OUTPUT` record,
 
 ### Does it need a login, a proxy or an API key?
 
-Wellfound Jobs Scraper needs no Wellfound login, no proxy and no API key, because it reads the public search pages wellfound.com serves to every visitor. Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages from it in 15 minutes (measured on 2026-11-10); a run that meets it slows down, waits, and then saves what it read and says so. Turn on Apify Proxy in Connection (`proxyConfiguration`) only if a run says so.
+Wellfound Jobs Scraper needs no Wellfound login, no proxy and no API key, because it reads the public search pages wellfound.com serves to every visitor. Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages from it in 15 minutes (measured on 2026-11-10); a run that meets it slows down, waits, and then saves what it read and says so. Turn on Apify Proxy in Connection (`proxyConfiguration`) if a run says so, or for full details of more than about 80 jobs: Wellfound lets one address open about 80 job pages before it slows it down, and on Apify 100 jobs with details took 274 s without a proxy and 135 s with Apify Proxy (2026-11-10). The proxy does not change the price.
 
 ### Does it work on Apify's free plan?
 
-Wellfound Jobs Scraper works on Apify's free plan: $0.0027 a job plus the $0.005 run start. The free $5 monthly credit pays for about 1,800 jobs in runs of 100.
+Wellfound Jobs Scraper works on Apify's free plan: $0.000013 a job plus the $0.0079 run start. The free $5 monthly credit pays for about 54,000 jobs in runs of 100.
 
 ### How often should I run it?
 
@@ -232,7 +235,7 @@ Wellfound Jobs Scraper checks whether Wellfound job links are still open when yo
 
 Wellfound Jobs Scraper runs from the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP. Each way uses your Apify token (Apify Console, Settings, API & Integrations) and takes the input as JSON keyed by the field names, such as `searchTerms` and `maxJobs`.
 
-**API.** One call runs the actor and returns its rows. Apify stops that wait after 300 seconds, which covers any search; a client below waits as long as a run takes.
+**API.** One call runs the actor and returns its rows. Apify stops that wait after 300 seconds, which covers any search; full details of many jobs can take longer, and a client below waits as long as a run takes.
 
 ```bash
 curl -X POST "https://api.apify.com/v2/acts/anshumanatrey~wellfound-jobs-search/run-sync-get-dataset-items" \
@@ -282,7 +285,8 @@ Wellfound Jobs Scraper reads public job postings that Wellfound shows to every v
 - Pay is shown on 64% of jobs, an equity range on 15%, years of experience on 64% and a startup stage on 43% (12,460 jobs, 2026-11-10).
 - A sign several currencies share (¥, ₨, kr) gives no currency on a search row; full details read it from the job page.
 - About 2 in 100 job pages carry no structured data (2 of 139 opened on 2026-11-10). Wellfound Jobs Scraper reads those jobs from the page itself: their full details lack the company website, markets and each place's country, and a checked link to one has no posting time, which such a page shows only as "5 days ago".
-- Visa sponsorship, relocation, time zones, skills, markets and funding come with full details only, one more page per job.
+- Visa sponsorship, relocation, time zones, skills, markets and funding come with full details only, one more page per job. Wellfound slows one address down after about 80 job pages: on Apify, 100 jobs with details took 274 s without a proxy, 135 s with Apify Proxy (2026-11-10).
+- Wellfound's Cloudflare serves each search page from a copy it refreshes about once a day (copies 4 to 23 hours old on 2026-11-10), so a job posted in the last hours can be missing until its page refreshes. Rows come newest first among the jobs those pages show.
 - A title no Wellfound role fits, and a place with no Wellfound page, read every job on Wellfound, about a minute.
 - Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages in 15 minutes (2026-11-10). A run that meets it saves what it read and says so.
 
