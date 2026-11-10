@@ -281,6 +281,7 @@ Wellfound Jobs Scraper reads public job postings that Wellfound shows to every v
 - Wellfound's order shifts while a search is read, so one read sees about 95% of a search's startups (452 of 463 in a measured search); a job that comes twice is kept once.
 - Pay is shown on 64% of jobs, an equity range on 15%, years of experience on 64% and a startup stage on 43% (12,460 jobs, 2026-11-10).
 - A sign several currencies share (¥, ₨, kr) gives no currency on a search row; full details read it from the job page.
+- About 2 in 100 job pages carry no structured data (2 of 139 opened on 2026-11-10). Wellfound Jobs Scraper reads those jobs from the page itself: their full details lack the company website, markets and each place's country, and a checked link to one has no posting time, which such a page shows only as "5 days ago".
 - Visa sponsorship, relocation, time zones, skills, markets and funding come with full details only, one more page per job.
 - A title no Wellfound role fits, and a place with no Wellfound page, read every job on Wellfound, about a minute.
 - Wellfound's Cloudflare check refused one address for about 7 minutes after some 1,500 pages in 15 minutes (2026-11-10). A run that meets it saves what it read and says so.
