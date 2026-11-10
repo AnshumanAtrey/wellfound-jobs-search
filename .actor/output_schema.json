@@ -1,0 +1,20 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Wellfound Jobs Search output",
+    "description": "The jobs found, one row per job in the default dataset (switch between the Jobs, Details and Startups views), plus a run summary record.",
+    "type": "object",
+    "properties": {
+        "jobs": {
+            "type": "string",
+            "title": "Jobs found (jobs)",
+            "description": "Every saved job, newest first: title, startup, places, remote, hybrid or onsite, pay and equity, years of experience, startup size, stage and badges, posting date and link, and with details on the description, visa sponsorship, time zones, skills and funding. Export as JSON, CSV or Excel.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary (summary)",
+            "description": "The OUTPUT record in the default key-value store: jobs Wellfound listed and showed, jobs matched and saved, the search pages read, checked links, notes about how the input was read, and the settings used.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+        }
+    }
+}

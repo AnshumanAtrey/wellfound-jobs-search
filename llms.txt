@@ -1,0 +1,104 @@
+# Wellfound Jobs Scraper & API - AngelList Startup Jobs, Equity
+
+> Wellfound jobs scraper and API for wellfound.com, formerly AngelList Talent: startup jobs by role, place and remote, newest first, with salary, equity, company stage and size.
+
+## Summary
+
+Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searches Wellfound, the startup job board that was AngelList Talent, and returns each job's title, startup, places, remote or office setting, pay and equity, years of experience, startup size, stage and badges, posting date and link, newest first. It reads every page of a Wellfound search (role, place, role at a place, remote) and sorts the jobs by the moment each went live, where other Wellfound actors read 1 to 10 pages in Wellfound's own order. Typed titles go through Wellfound's 518 roles and typed places through its 475 place pages, so "software engineer" in "Bangalore" or "Remote India" works as typed. Full details add the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding. No login, no API key, no proxy by default.
+
+## Key features
+
+- Every page of each Wellfound search read, then newest first by the moment a job went live (or was reposted)
+- Pay and equity parsed into numbers with their currency; startup size, stage (early, growth, scale, public) and badges (YC Funded, Top Investors, Valuation $1B+) on every row
+- One job title is enough; an empty form returns the newest jobs on all of Wellfound (578 search pages, about a minute)
+- Places as people type them: San Francisco, NYC, Bangalore or Bengaluru, California, Germany, Europe, EMEA, Remote India, Worldwide
+- Filters: remote, hybrid or onsite; job type; years of experience; lowest yearly pay in any currency; startup stage; leave-out words
+- Full details: visa sponsorship, relocation, time zones, skills, markets, funding (amount, rounds, newest round and its month), places with region and country
+- Job link check: open, closed (taken down) or not found
+- Pay per delivered row; a spending limit stops a run cleanly with the jobs it paid for
+
+## Pricing
+
+- $0.0027 per job (Job event; also one checked link that is closed or not found)
+- $0.0029 per job with full details (Job with details event)
+- $0.005 per run start, per GB of memory (Apify's Actor Start event)
+
+Typical run, 100 newest jobs: $0.275
+Typical run, 100 jobs with full details: $0.295
+
+## When to use
+
+- New startup jobs by title, city, remote setting, pay and equity, every day
+- Recruiters and talent teams tracking which startups hire for a role, at what stage and pay
+- Sales and venture research: startups hiring by market, stage and funding, with their websites
+- AI agents and data pipelines that need a clean Wellfound jobs feed through the API or MCP
+
+## When NOT to use
+
+- Every job of one startup: Wellfound shows visitors at most 3 jobs of a startup in a search, and its company pages sit behind a browser check
+- Only the jobs new since your last run, with alerts: other Wellfound actors offer that; schedule this one with postedWithin 24 hours instead
+
+## Sample inputs
+
+```json
+{
+  "searchTerms": ["software engineer"],
+  "location": ["New York City", "Remote"],
+  "minSalary": "150k USD",
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+```json
+{
+  "title": "Staff Software Engineer (Applied AI)",
+  "company": "Traba",
+  "location": "New York City",
+  "otherLocations": ["San Francisco"],
+  "workType": "onsite",
+  "employmentType": "full-time",
+  "salary": "USD 240,000 - 300,000 per year",
+  "postedAt": "2026-11-10T00:37:18Z",
+  "jobUrl": "https://wellfound.com/jobs/5027476-staff-software-engineer-applied-ai",
+  "status": "open",
+  "platform": "wellfound",
+  "jobId": "5027476",
+  "salaryMin": 240000,
+  "salaryMax": 300000,
+  "salaryCurrency": "USD",
+  "offersEquity": true,
+  "equityMin": 0.13,
+  "equityMax": 0.24,
+  "companySize": "51-200",
+  "companyBadges": ["Actively Hiring", "Growing fast"]
+}
+```
+
+## Keys (input)
+
+- Job titles to find (searchTerms), Where the job is (location), Remote or office (workType), Job type (employmentType), Posted in the last (postedWithin), Number of jobs (maxJobs), Full details (includeDetails), Leave out words (excludeTerms), Lowest yearly pay (minSalary), Company stage (companyStage), Experience (experienceYears), Descriptions too (searchDescriptions), Only these startups (companies), Job links to check (jobUrls), Connection (proxyConfiguration)
+
+## Differentiators vs alternatives
+
+- vs blackfalcondata/wellfound-scraper: reads every page of a search and sorts it newest first; no residential proxy by default
+- vs memo23/wellfound-jobs-scraper: startup stage, size and badges and parsed pay and equity on every plain row; job link check
+- vs clearpath/wellfound-api-ppe: typed titles and places instead of search URLs; every page read instead of 1 by default
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/wellfound-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/wellfound-jobs-search
+- Engine: https://github.com/AnshumanAtrey/ats-jobs-engine
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey, builder of a portfolio of data and OSINT actors on Apify Store, https://atrey.dev
+
+## Last updated
+
+2026-11-10

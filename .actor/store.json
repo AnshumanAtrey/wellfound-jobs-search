@@ -1,0 +1,86 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md) by CI after every deploy. No actorId yet: the first CI push creates the Actor, private, and its ID goes here (Phase B of jobs batch 3). isPublic stays false until the owner says go. The prices below are placeholders until they are measured on Apify: pricing apply is false, so CI sends none.",
+    "seoTitle": "Wellfound Jobs Scraper - Startup Salary & Equity",
+    "seoDescription": "Scrape Wellfound (AngelList) startup jobs by role, city and remote, newest first: salary, equity, startup stage, size and funding. No login or API key.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "defaultRunOptions$comment": "Placeholder until Phase B measures the example input at 512 MB, 1 GB and 2 GB on Apify. Locally (2026-11-10) the empty form read 578 search pages in 48 s with a 193 MB peak.",
+    "pricing": {
+        "$comment": "Placeholders, not applied (apply false): Phase B prices by the owner's rule for jobs batch 3 (measured Apify cost plus an 80-100% markup by tier) and reports the house rule (5-15% under blackfalcondata/wellfound-scraper, $0.003 a job plus $0.005 a run) beside it.",
+        "apply": false,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing: measured cost plus a markup by tier",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, startup, places, remote, hybrid or onsite, pay and equity, years of experience, startup size, stage and badges, posting date and job link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0027
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding, and the city, region and country.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0029
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0029
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.0029
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0029
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0029
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0029
+                                }
+                            }
+                        },
+                        "apify-actor-start": {
+                            "eventTitle": "Actor Start",
+                            "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
+                            "eventPriceUsd": 0.005
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

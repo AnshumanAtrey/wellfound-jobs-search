@@ -1,0 +1,738 @@
+{
+    "actorSpecification": 1,
+    "name": "wellfound-jobs-search",
+    "title": "Wellfound Jobs Scraper & API - AngelList Startup Jobs, Equity",
+    "description": "Wellfound jobs scraper and API for wellfound.com, formerly AngelList Talent: startup jobs by role, place and remote, newest first, with salary, equity, company stage and size. Reads every page of a search, adds visa sponsorship and funding with details. No login.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Wellfound jobs",
+            "description": "One row per job, newest first: title, startup, places, remote, hybrid or onsite, pay and equity, years of experience, startup size, stage and badges, posting date and link; with details on, also the description, visa sponsorship, relocation, time zones, skills, markets, funding and the city, region and country. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the startup posted it on Wellfound.",
+                        "example": "Senior Data Scientist"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup name (company)",
+                        "description": "The startup or company hiring, as Wellfound names it.",
+                        "example": "Constructor.io"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "The first place Wellfound lists for the job, a town as Wellfound writes it, or Remote for a remote job that names no town.",
+                        "example": "Munich"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "Every other place Wellfound lists for the job.",
+                        "example": [
+                            "Berlin"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or office (workType)",
+                        "description": "remote when Wellfound marks the job remote (remote only, onsite or remote, or remote with no policy), hybrid for in office with work-from-home flexibility, else onsite.",
+                        "example": "remote"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, part-time, contract, intern or cofounder, as Wellfound states it.",
+                        "example": "full-time"
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay summary (salary)",
+                        "description": "The yearly pay range Wellfound shows, with its currency, as in USD 80,000 - 120,000 per year. Empty when the startup shows none.",
+                        "example": "USD 80,000 - 120,000 per year"
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When the job went live on Wellfound, in UTC, to the second; for a reposted job, when it went up again.",
+                        "example": "2026-11-06T01:02:51Z"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on wellfound.com.",
+                        "example": "https://wellfound.com/jobs/4523793-senior-data-scientist"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "Where to apply: the job's page on wellfound.com. Empty for a checked link that is closed or not found.",
+                        "example": "https://wellfound.com/jobs/4523793-senior-data-scientist"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (taken down) or not found.",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job site (platform)",
+                        "description": "The site the job came from: always wellfound here.",
+                        "example": "wellfound"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup page name (companySlug)",
+                        "description": "The startup's name in its Wellfound links (wellfound.com/company/<companySlug>).",
+                        "example": "constructor-io"
+                    },
+                    "companyWebsite": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup website (companyWebsite)",
+                        "description": "The startup's own website, with details on and for checked links.",
+                        "example": "https://constructor.io"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "Wellfound's number for the job, the number at the start of its link.",
+                        "example": "4523793"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read Wellfound, in UTC.",
+                        "example": "2026-11-10T10:47:38+00:00"
+                    },
+                    "experienceMin": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Experience from (experienceMin)",
+                        "description": "The fewest years of experience the job asks for, when Wellfound states it (about 6 jobs in 10); 0 is no experience required.",
+                        "example": 3
+                    },
+                    "experienceMax": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Experience up to (experienceMax)",
+                        "description": "The most years of experience the job asks for; Wellfound rarely states one.",
+                        "example": null
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "The bottom of the yearly pay range, as a number in salaryCurrency.",
+                        "example": 80000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "The top of the yearly pay range, as a number in salaryCurrency.",
+                        "example": 120000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "The three-letter currency of the pay, such as USD, INR or EUR. Empty for a sign several currencies share (¥, kr) until details read it from the page.",
+                        "example": "USD"
+                    },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "year: Wellfound asks for and shows yearly pay. Some startups type a monthly amount there.",
+                        "example": "year"
+                    },
+                    "offersEquity": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Equity offered? (offersEquity)",
+                        "description": "true when the job shows an equity range, false when it says No equity, empty when it says neither.",
+                        "example": true
+                    },
+                    "equityMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest equity, % (equityMin)",
+                        "description": "The bottom of the equity range, in percent of the company.",
+                        "example": 0.1
+                    },
+                    "equityMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest equity, % (equityMax)",
+                        "description": "The top of the equity range, in percent of the company.",
+                        "example": 0.5
+                    },
+                    "remoteIn": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Hires remotely in (remoteIn)",
+                        "description": "For a remote job, the countries, regions or towns it hires remotely in; Everywhere when it is open anywhere. Empty for an office job.",
+                        "example": [
+                            "Brazil",
+                            "United Kingdom",
+                            "Germany"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "remotePolicy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote policy (remotePolicy)",
+                        "description": "Wellfound's remote setting in its own words: Remote only, Onsite or remote, In office - WFH flexibility, or In office. Empty when the startup set none.",
+                        "example": "Remote only"
+                    },
+                    "role": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Role on Wellfound (role)",
+                        "description": "The role Wellfound files the job under, such as Software Engineer or Data Scientist.",
+                        "example": "Data Scientist"
+                    },
+                    "companySize": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup size (companySize)",
+                        "description": "Employees, as a band: 1-10, 11-50, 51-200, 201-500, 501-1000, 1001-5000 or 5000+.",
+                        "example": "501-1000"
+                    },
+                    "companyStage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup stage (companyStage)",
+                        "description": "Early Stage, Growth Stage, Scale Stage or Public Stage, as Wellfound marks the company. Empty when it has no stage mark.",
+                        "example": "Growth Stage"
+                    },
+                    "companyTagline": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup tagline (companyTagline)",
+                        "description": "What the startup does, in its own one line.",
+                        "example": "Personalized and highly-relevant search and product discovery"
+                    },
+                    "companyLogo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Startup logo (companyLogo)",
+                        "description": "The link to the startup's logo image on Wellfound.",
+                        "example": "https://photos.wellfound.com/startups/i/690214-4a192ccd8bbaf74a994a0b4915050c3c-medium_jpg.jpg?buster=1600000000"
+                    },
+                    "companyBadges": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Startup badges (companyBadges)",
+                        "description": "Wellfound's marks on the startup: Actively Hiring, YC Funded, Top Investors, Valuation $1B+, Recently funded, Growing fast, B2B or B2C, Highly rated, and how fast it answers applications.",
+                        "example": [
+                            "Actively Hiring",
+                            "B2B",
+                            "Valuation $500M+"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "visaSponsorship": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Visa sponsor? (visaSponsorship)",
+                        "description": "true when the job page says visa sponsorship is available, false when not available. With details on and for checked links.",
+                        "example": false
+                    },
+                    "relocation": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Pays relocation? (relocation)",
+                        "description": "true when the job page says relocation is allowed, false when not. With details on and for checked links.",
+                        "example": false
+                    },
+                    "timezones": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Preferred time zones (timezones)",
+                        "description": "The time zones the startup prefers for the job, such as Pacific Time. With details on, when the page names them.",
+                        "example": [
+                            "Pacific Time",
+                            "Eastern Time"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Skills asked for (skills)",
+                        "description": "The skills the job page lists. With details on, when the page lists them.",
+                        "example": [
+                            "Python",
+                            "SQL",
+                            "Machine Learning"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "industries": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Startup markets (industries)",
+                        "description": "The markets the startup works in, from the job page's markup. With details on.",
+                        "example": [
+                            "B2B",
+                            "Search"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "companyLocation": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Headquarters (companyLocation)",
+                        "description": "The startup's home town, which a remote job's page names. With details on.",
+                        "example": "San Francisco"
+                    },
+                    "companyFunding": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Money raised (companyFunding)",
+                        "description": "The funding the startup has raised, as the job page shows it. With details on.",
+                        "example": "$61.1M"
+                    },
+                    "fundingRounds": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Funding rounds (fundingRounds)",
+                        "description": "How many funding rounds Wellfound records. With details on.",
+                        "example": 3
+                    },
+                    "latestRound": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Newest round (latestRound)",
+                        "description": "The newest round Wellfound records, such as Seed or Series B. With details on.",
+                        "example": "Series A"
+                    },
+                    "latestRoundDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Round month (latestRoundDate)",
+                        "description": "The month of that round, as YYYY-MM. With details on.",
+                        "example": "2022-02"
+                    },
+                    "reposted": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Reposted? (reposted)",
+                        "description": "true when the job page says Reposted rather than Posted. With details on and for checked links.",
+                        "example": true
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The job description as plain text, with details on.",
+                        "example": "About Us\nConstructor is the next-generation platform for search and discovery in ecommerce..."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "The job description in HTML, from the job page, with details on.",
+                        "example": "<h3>About Us</h3><p>Constructor is the next-generation platform...</p>"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Town or city (city)",
+                        "description": "With details on: the town of the job's first place.",
+                        "example": "Munich"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State or region (region)",
+                        "description": "With details on: the state or region of the job's first place.",
+                        "example": "Bavaria"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country name (country)",
+                        "description": "With details on: the country of the job's first place.",
+                        "example": "Germany"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "With details on: the two-letter code of that country.",
+                        "example": "DE"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, remote or office, the pay and equity, the startup stage and when it went live, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "workType",
+                            "salary",
+                            "equityMin",
+                            "equityMax",
+                            "companyStage",
+                            "postedAt",
+                            "jobUrl"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Startup name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or office (workType)",
+                                "format": "text"
+                            },
+                            "salary": {
+                                "label": "Pay summary (salary)",
+                                "format": "text"
+                            },
+                            "equityMin": {
+                                "label": "Lowest equity, % (equityMin)",
+                                "format": "number"
+                            },
+                            "equityMax": {
+                                "label": "Highest equity, % (equityMax)",
+                                "format": "number"
+                            },
+                            "companyStage": {
+                                "label": "Startup stage (companyStage)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description, visa sponsorship, relocation, time zones, skills, markets and funding of each job, with details on.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "description",
+                            "visaSponsorship",
+                            "relocation",
+                            "timezones",
+                            "skills",
+                            "remoteIn",
+                            "industries",
+                            "companyFunding",
+                            "latestRound",
+                            "country",
+                            "applyUrl",
+                            "jobId",
+                            "status",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Startup name (company)",
+                                "format": "text"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "visaSponsorship": {
+                                "label": "Visa sponsor? (visaSponsorship)",
+                                "format": "boolean"
+                            },
+                            "relocation": {
+                                "label": "Pays relocation? (relocation)",
+                                "format": "boolean"
+                            },
+                            "timezones": {
+                                "label": "Preferred time zones (timezones)",
+                                "format": "array"
+                            },
+                            "skills": {
+                                "label": "Skills asked for (skills)",
+                                "format": "array"
+                            },
+                            "remoteIn": {
+                                "label": "Hires remotely in (remoteIn)",
+                                "format": "array"
+                            },
+                            "industries": {
+                                "label": "Startup markets (industries)",
+                                "format": "array"
+                            },
+                            "companyFunding": {
+                                "label": "Money raised (companyFunding)",
+                                "format": "text"
+                            },
+                            "latestRound": {
+                                "label": "Newest round (latestRound)",
+                                "format": "text"
+                            },
+                            "country": {
+                                "label": "Country name (country)",
+                                "format": "text"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                },
+                "companies": {
+                    "title": "Startups",
+                    "description": "The startup behind each job: its size, stage, badges, tagline and website, for lead lists and market maps.",
+                    "transformation": {
+                        "fields": [
+                            "company",
+                            "companySize",
+                            "companyStage",
+                            "companyBadges",
+                            "companyTagline",
+                            "companyWebsite",
+                            "companySlug",
+                            "title",
+                            "postedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "company": {
+                                "label": "Startup name (company)",
+                                "format": "text"
+                            },
+                            "companySize": {
+                                "label": "Startup size (companySize)",
+                                "format": "text"
+                            },
+                            "companyStage": {
+                                "label": "Startup stage (companyStage)",
+                                "format": "text"
+                            },
+                            "companyBadges": {
+                                "label": "Startup badges (companyBadges)",
+                                "format": "array"
+                            },
+                            "companyTagline": {
+                                "label": "Startup tagline (companyTagline)",
+                                "format": "text"
+                            },
+                            "companyWebsite": {
+                                "label": "Startup website (companyWebsite)",
+                                "format": "link"
+                            },
+                            "companySlug": {
+                                "label": "Startup page name (companySlug)",
+                                "format": "text"
+                            },
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many jobs Wellfound listed, showed, matched and saved, the Wellfound search pages read, the checked links, the notes about how the input was read and the settings used.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts of jobs read, matched and saved, the search pages read, checked links, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}

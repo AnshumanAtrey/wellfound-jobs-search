@@ -1,0 +1,224 @@
+{
+    "title": "Wellfound Jobs Search",
+    "description": "Type a job title and press Start: you get the newest matching startup jobs on wellfound.com (formerly AngelList Talent), with salary, equity, remote setting and company stage. Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchTerms": {
+            "title": "Job titles to find (searchTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type the job titles or roles to find, one per line, for example software engineer or product designer. Wellfound's own role pages are read for them, and a job matches when its title has every word of a line: frontend also finds Front-End. Leave it empty to get the newest jobs of every kind. A pasted Wellfound search link (wellfound.com/role/l/software-engineer/san-francisco) works too.",
+            "placeholderValue": "software engineer",
+            "example": [
+                "software engineer"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "location": {
+            "title": "Where the job is (location)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type where the jobs should be: cities, US states, countries or regions, one per line, for example San Francisco, New York City, Bangalore, Germany, Europe or EMEA. Wellfound's own place pages are read, so a country finds every town in it. Remote alone asks for remote jobs, Remote India for remote jobs open to India, Worldwide for jobs open anywhere. Leave it empty for anywhere.",
+            "placeholderValue": "San Francisco",
+            "example": [
+                "San Francisco"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "workType": {
+            "title": "Remote or office (workType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick remote, hybrid or onsite. Leave it empty for all three. Remote is what Wellfound marks remote: remote only, onsite or remote, or remote with no policy. Hybrid is in office with work-from-home flexibility, and onsite is in office. Typed words such as wfh or in office work too.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "remote",
+                    "hybrid",
+                    "onsite"
+                ],
+                "enumTitles": [
+                    "Remote, from anywhere it hires (remote)",
+                    "Hybrid, office with WFH days (hybrid)",
+                    "Onsite, in the office (onsite)"
+                ]
+            },
+            "example": [
+                "remote"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "employmentType": {
+            "title": "Job type (employmentType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job types to keep: full-time, part-time, contract or intern. Leave it empty for every type, cofounder roles included. Wellfound states one type per job. Typed words such as internship or freelance work too.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "full-time",
+                    "part-time",
+                    "contract",
+                    "intern"
+                ],
+                "enumTitles": [
+                    "Full-time",
+                    "Part-time",
+                    "Contract",
+                    "Internship (intern)"
+                ]
+            },
+            "example": [
+                "full-time"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "postedWithin": {
+            "title": "Posted in the last (postedWithin)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3 days, 7 days or 30 days. 30 days, the default, keeps the last month's jobs, newest first, and any time keeps every open job: Wellfound keeps some up for years. A repost counts from the day it went up again. You can also type your own period, such as 48 hours or 2 weeks.",
+            "enumSuggestedValues": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "30 days",
+                "any time"
+            ],
+            "enumTitles": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "30 days",
+                "any time"
+            ],
+            "example": "7 days",
+            "default": "30 days",
+            "nullable": true
+        },
+        "maxJobs": {
+            "title": "Number of jobs (maxJobs)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "jobs",
+            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job. Each job is one charged row, so this sets the most a run can cost.",
+            "prefill": 100,
+            "example": 100,
+            "default": 100,
+            "sectionCaption": "How many and how much",
+            "nullable": true
+        },
+        "includeDetails": {
+            "title": "Full details (includeDetails)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to add the full details of each job from its own page: the description as text and HTML, every place with its region and country, pay with its currency from the page's markup, visa sponsorship, relocation, preferred time zones, skills, the company's website, markets, headquarters and funding (amount raised, rounds and the newest round). The run reads each saved job's page once more.",
+            "default": false,
+            "nullable": true
+        },
+        "excludeTerms": {
+            "title": "Leave out words (excludeTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type words that leave a job out when its title has them, one per line, for example senior or intern. Leave it empty to keep every job.",
+            "placeholderValue": "senior",
+            "example": [
+                "senior"
+            ],
+            "default": [],
+            "sectionCaption": "Narrow the search",
+            "nullable": true
+        },
+        "minSalary": {
+            "title": "Lowest yearly pay (minSalary)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type the lowest yearly pay to keep, with its currency: 150000 USD, 150k, 20L INR or 60000 EUR. A job is kept when the top of its pay range reaches it in that currency; a job with no pay shown or pay in another currency is left out. A number alone is US dollars. Leave it empty for any pay.",
+            "example": "150k USD",
+            "default": "",
+            "nullable": true
+        },
+        "companyStage": {
+            "title": "Company stage (companyStage)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the startup stages to keep, as Wellfound marks them: early (seed and first rounds), growth, scale or public. A company with no stage mark is left out when you pick one. Leave it empty for every company.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "early",
+                    "growth",
+                    "scale",
+                    "public"
+                ],
+                "enumTitles": [
+                    "Early stage (early)",
+                    "Growth stage (growth)",
+                    "Scale stage (scale)",
+                    "Public company (public)"
+                ]
+            },
+            "example": [
+                "early",
+                "growth"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "experienceYears": {
+            "title": "Experience (experienceYears)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ for 5 or more, or fresher for 0. Wellfound states the fewest years a job asks for, on about 6 jobs in 10, and a job is kept when that number is within your years or below them; a job that states none is left out. Leave it empty for any experience.",
+            "example": "3",
+            "default": "",
+            "nullable": true
+        },
+        "searchDescriptions": {
+            "title": "Descriptions too (searchDescriptions)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to match your words in each job's description too (descriptions too), not only in its title: python then finds every job whose description mentions Python. Wellfound's search pages carry the description, so this costs no extra reading.",
+            "default": false,
+            "nullable": true
+        },
+        "companies": {
+            "title": "Only these startups (companies)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type startup names to keep only their jobs, one per line, for example Calm, or paste a Wellfound company link (wellfound.com/company/calm). They are found among the jobs your other fields read, by name or slug; with nothing else typed, among every job on Wellfound. Leave it empty for every startup.",
+            "placeholderValue": "Calm",
+            "example": [
+                "Calm"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "jobUrls": {
+            "title": "Job links to check (jobUrls)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Paste Wellfound job links to check whether they are still open, one per line, instead of searching. Each link comes back open with the job and its full page, closed (taken down), or not found. Old angel.co job links work too.",
+            "placeholderValue": "https://wellfound.com/jobs/4965854-software-engineer",
+            "default": [],
+            "sectionCaption": "Check job links",
+            "nullable": true
+        },
+        "proxyConfiguration": {
+            "title": "Connection (proxyConfiguration)",
+            "type": "object",
+            "editor": "proxy",
+            "description": "Leave the connection as it is: Wellfound's search pages answer the run's own address. Turn on Apify Proxy only when a run says Wellfound's Cloudflare check refused the address; the run then moves to a fresh proxy address after a refusal.",
+            "default": {
+                "useApifyProxy": false
+            },
+            "sectionCaption": "Connection",
+            "nullable": true
+        }
+    }
+}

@@ -1,0 +1,331 @@
+{
+    "$comment": "Example tasks, published on the Store by scripts/publish-tasks.mjs after a deploy once the Actor is public (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries wellfound. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "wellfound-jobs-last-24-hours",
+            "title": "Find the newest Wellfound startup jobs of the last 24 hours",
+            "description": "Get every startup job posted on wellfound.com in the last day, newest first, with the startup, places, remote or office, pay and equity, startup stage and link. Schedule it daily for a fresh feed of new startup jobs.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "24 hours",
+                "maxJobs": 0,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "New Wellfound Startup Jobs in the Last 24 Hours",
+            "seoDescription": "Every startup job posted on Wellfound in the last day, newest first, with pay, equity, remote setting, startup stage and link. Run it daily.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-remote-software-engineer-jobs",
+            "title": "Find remote software engineer jobs at startups on Wellfound",
+            "description": "Get the newest remote software engineer jobs on wellfound.com, with where each one hires remotely, the pay and equity, the startup stage and link.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "location": [],
+                "workType": [
+                    "remote"
+                ],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Remote Software Engineer Jobs at Startups - Wellfound",
+            "seoDescription": "Remote software engineer jobs at startups from Wellfound, newest first, with where they hire, pay, equity and startup stage. No login.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-startup-jobs-san-francisco",
+            "title": "Find startup jobs in San Francisco on Wellfound",
+            "description": "Get the newest startup jobs in San Francisco on wellfound.com, every role, with the startup, pay and equity, remote or office, startup stage and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "San Francisco"
+                ],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Startup Jobs in San Francisco - Wellfound",
+            "seoDescription": "Startup jobs in San Francisco from Wellfound, newest first, with pay, equity, remote or office, startup size and stage. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-startup-jobs-new-york",
+            "title": "Find startup jobs in New York City on Wellfound",
+            "description": "Get the newest startup jobs in New York City on wellfound.com, every role, with the startup, pay and equity, remote or office, startup stage and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "New York City"
+                ],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Startup Jobs in New York City - Wellfound",
+            "seoDescription": "Startup jobs in New York City from Wellfound, newest first, with pay, equity, remote or office, startup size and stage. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-startup-jobs-bangalore",
+            "title": "Find startup jobs in Bangalore on Wellfound",
+            "description": "Get the newest startup jobs in Bangalore (Bengaluru) on wellfound.com, every role, with the startup, pay in rupees, equity, years of experience and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "Bangalore"
+                ],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Startup Jobs in Bangalore - Wellfound",
+            "seoDescription": "Startup jobs in Bangalore (Bengaluru) from Wellfound, newest first, with pay in rupees, equity, experience and startup stage.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-product-manager-jobs",
+            "title": "Find product manager jobs at startups on Wellfound",
+            "description": "Get the newest product manager jobs on wellfound.com, with the startup, places, remote or office, pay and equity, startup stage and link.",
+            "input": {
+                "searchTerms": [
+                    "product manager"
+                ],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Product Manager Jobs at Startups - Wellfound",
+            "seoDescription": "Product manager jobs at startups from Wellfound, newest first, with places, remote setting, pay, equity and startup stage.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-machine-learning-engineer-jobs",
+            "title": "Find machine learning and AI engineer jobs on Wellfound",
+            "description": "Get the newest machine learning engineer and AI engineer jobs at startups on wellfound.com, with the startup, places, remote setting, pay, equity and link.",
+            "input": {
+                "searchTerms": [
+                    "machine learning engineer",
+                    "ai engineer"
+                ],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Machine Learning and AI Engineer Jobs - Wellfound",
+            "seoDescription": "Machine learning and AI engineer jobs at startups from Wellfound, newest first, with places, remote setting, pay and equity.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-high-paying-engineer-jobs",
+            "title": "Find startup engineer jobs paying $150k or more on Wellfound",
+            "description": "Get the newest software engineer jobs on wellfound.com whose yearly pay reaches 150,000 US dollars, with the equity, the startup stage, places and link.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "150k USD",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Startup Engineer Jobs Paying $150k+ - Wellfound",
+            "seoDescription": "Software engineer jobs at startups paying $150k a year or more, from Wellfound, newest first, with equity, stage and places.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "minSalary",
+                "workType",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "wellfound-early-stage-startup-jobs",
+            "title": "Find jobs at early-stage startups on Wellfound",
+            "description": "Get the newest jobs at early-stage startups on wellfound.com, every role, with the startup, its size and badges, pay and equity, places and link.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [
+                    "early"
+                ],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Jobs at Early-Stage Startups - Wellfound",
+            "seoDescription": "Jobs at early-stage startups from Wellfound, newest first, with startup size and badges, pay, equity and places. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "companyStage",
+                "location",
+                "maxJobs"
+            ],
+            "datasetView": "companies"
+        },
+        {
+            "name": "wellfound-jobs-with-visa-and-funding",
+            "title": "Get Wellfound jobs with visa sponsorship, funding and details",
+            "description": "Get the newest data scientist jobs on wellfound.com with full details: the description, visa sponsorship, relocation, time zones, skills, the startup markets and its funding rounds.",
+            "input": {
+                "searchTerms": [
+                    "data scientist"
+                ],
+                "location": [],
+                "workType": [],
+                "employmentType": [],
+                "postedWithin": "30 days",
+                "maxJobs": 50,
+                "includeDetails": true,
+                "excludeTerms": [],
+                "minSalary": "",
+                "companyStage": [],
+                "experienceYears": "",
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Wellfound Jobs with Visa Sponsorship and Funding",
+            "seoDescription": "Startup jobs from Wellfound with full details: description, visa sponsorship, relocation, time zones, skills and funding.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "includeDetails",
+                "maxJobs"
+            ],
+            "datasetView": "details"
+        }
+    ]
+}
