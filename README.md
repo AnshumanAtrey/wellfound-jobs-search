@@ -182,7 +182,7 @@ Wellfound shows visitors at most 3 jobs of each startup in a search: on 2026-11-
 
 ### Which posting date does it use?
 
-Wellfound Jobs Scraper uses the moment a job went live on Wellfound, to the second, which is also the date in the job page's own markup (10 of 10 links checked in each run). A reposted job counts from the day it went up again, as Wellfound shows it ("Reposted: today"); with full details, `reposted` says which jobs those are.
+Wellfound Jobs Scraper uses the moment a job went live on Wellfound, to the second, which is also the date in the job page's own markup (10 of 10 links in each of five runs checked on 2026-11-10). A reposted job counts from the day it went up again, as Wellfound shows it ("Reposted: today"); with full details, `reposted` says which jobs those are.
 
 ### How are job titles matched?
 
