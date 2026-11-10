@@ -80,7 +80,7 @@
                             "null"
                         ],
                         "title": "Job type (employmentType)",
-                        "description": "full-time, part-time, contract, intern or cofounder, as Wellfound states it.",
+                        "description": "full-time, contract, intern or cofounder (a cofounder role at a startup), as Wellfound states it; Wellfound has no part-time or temporary type.",
                         "example": "full-time"
                     },
                     "salary": {

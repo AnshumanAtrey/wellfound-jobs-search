@@ -10,7 +10,7 @@ Use it as a Wellfound API with no login, an AngelList jobs scraper for remote st
 - **Startup data on every row.** Pay and equity as Wellfound shows them, parsed into numbers with their currency; the startup's size, stage (early, growth, scale, public) and badges such as YC Funded, Top Investors, Valuation $1B+ and Recently funded; the remote setting in Wellfound's own words and the countries a remote job hires in.
 - **One job title is enough.** Type software engineer and press Start. Wellfound's 518 roles are matched for you, and a title no role fits is found in every job. Leave the form empty for the newest jobs on all of Wellfound.
 - **Places the way people type them.** San Francisco, NYC, Bangalore or Bengaluru, California, Germany, Europe, EMEA, Remote India or Worldwide. Wellfound's own place pages hold every town inside a country or region, and a job read from one is matched to it even when its own town is a small one.
-- **Filters startup job seekers use.** Remote, hybrid or onsite, job type, years of experience, lowest yearly pay in any currency, and startup stage.
+- **Filters startup job seekers use.** Remote, hybrid or onsite, job type (cofounder roles included), years of experience, lowest yearly pay in any currency, and startup stage.
 - **Full details from each job's page.** Visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding (amount raised, number of rounds, newest round and its month), and every place with its region and country.
 - **Checks job links.** Paste Wellfound job links, and each comes back open, closed (taken down) or not found.
 
@@ -81,10 +81,10 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 
 | Field | What it does |
 |---|---|
-| Job titles to find (`searchTerms`) | One per line, such as software engineer or product designer. Wellfound's own role pages are read, and a job matches when its title has every word. A pasted Wellfound search link works too |
+| Job titles to find (`searchTerms`) | One per line, such as software engineer or product designer. Wellfound's own role pages are read, and a job matches when its title has every word. A place typed with the title works too (software engineer in San Francisco), and so does a pasted Wellfound search link |
 | Where the job is (`location`) | Cities, US states, countries or regions: San Francisco, NYC, Bangalore, California, Germany, Europe, EMEA. Remote alone asks for remote jobs, Remote India for remote jobs open to India, Worldwide for jobs open anywhere |
 | Remote or office (`workType`) | remote, hybrid or onsite, as Wellfound marks the job |
-| Job type (`employmentType`) | full-time, part-time, contract or intern; empty keeps every type, cofounder roles included |
+| Job type (`employmentType`) | full-time, contract, intern or cofounder; empty keeps every type |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days (the default), any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
 | Full details (`includeDetails`) | Adds the description, visa sponsorship, relocation, time zones, skills, the startup's website, markets and funding, and the city, region and country |
@@ -191,6 +191,10 @@ Wellfound Jobs Scraper reads Wellfound's own role pages for what you type: softw
 ### How do places work?
 
 Wellfound has a page for 475 places: cities, US states, countries and regions. Wellfound Jobs Scraper reads the page of each place you type, and a country's page holds every town in it: on 2026-11-10 India's page held jobs in Sonipat, Vellore and HSR Layout. Bengaluru and Bangalore, NYC and New York City, SF and San Francisco all work, a region such as EMEA or APAC reads Wellfound's pages for its continents and countries, and an Indian town with no page of its own reads its state's.
+
+### Which job types does Wellfound have?
+
+Wellfound states four job types: full-time (9,722 of 12,460 jobs on 2026-11-10), contract (1,415), internship (881) and cofounder (442), a cofounder role at a startup, usually paid mostly in equity. Wellfound Jobs Scraper keeps them in `employmentType` as full-time, contract, intern and cofounder, and Job type (`employmentType`) filters on them. Wellfound has no part-time or temporary type, so those are left out of the filter with a note.
 
 ### What does remote mean on Wellfound?
 

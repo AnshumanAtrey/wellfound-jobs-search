@@ -104,16 +104,18 @@
             "datasetView": "jobs"
         },
         {
-            "name": "wellfound-startup-jobs-new-york",
-            "title": "Find startup jobs in New York City on Wellfound",
-            "description": "Get the newest startup jobs in New York City on wellfound.com, every role, with the startup, pay and equity, remote or office, startup stage and link.",
+            "name": "wellfound-cofounder-roles",
+            "title": "Find cofounder roles at startups on Wellfound",
+            "description": "Get the newest cofounder roles on wellfound.com, the jobs startups post to find a cofounder, with the equity offered, the startup, its stage, places and link.",
             "input": {
-                "searchTerms": [],
-                "location": [
-                    "New York City"
+                "searchTerms": [
+                    "cofounder"
                 ],
+                "location": [],
                 "workType": [],
-                "employmentType": [],
+                "employmentType": [
+                    "cofounder"
+                ],
                 "postedWithin": "30 days",
                 "maxJobs": 100,
                 "includeDetails": false,
@@ -125,12 +127,12 @@
                 "companies": [],
                 "jobUrls": []
             },
-            "seoTitle": "Startup Jobs in New York City - Wellfound",
-            "seoDescription": "Startup jobs in New York City from Wellfound, newest first, with pay, equity, remote or office, startup size and stage. No login needed.",
+            "seoTitle": "Cofounder Roles at Startups - Wellfound",
+            "seoDescription": "Cofounder roles at startups from Wellfound, newest first, with the equity offered, startup stage, places and link. No login needed.",
             "inputSchemaFields": [
                 "searchTerms",
+                "employmentType",
                 "location",
-                "postedWithin",
                 "maxJobs"
             ],
             "datasetView": "jobs"

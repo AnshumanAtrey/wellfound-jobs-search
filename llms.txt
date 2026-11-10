@@ -12,7 +12,7 @@ Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searche
 - Pay and equity parsed into numbers with their currency; startup size, stage (early, growth, scale, public) and badges (YC Funded, Top Investors, Valuation $1B+) on every row
 - One job title is enough; an empty form returns the newest jobs on all of Wellfound (578 search pages, about a minute)
 - Places as people type them: San Francisco, NYC, Bangalore or Bengaluru, California, Germany, Europe, EMEA, Remote India, Worldwide
-- Filters: remote, hybrid or onsite; job type; years of experience; lowest yearly pay in any currency; startup stage; leave-out words
+- Filters: remote, hybrid or onsite; job type (full-time, contract, intern, cofounder); years of experience; lowest yearly pay in any currency; startup stage; leave-out words
 - Full details: visa sponsorship, relocation, time zones, skills, markets, funding (amount, rounds, newest round and its month), places with region and country
 - Job link check: open, closed (taken down) or not found
 - Pay per delivered row; a spending limit stops a run cleanly with the jobs it paid for

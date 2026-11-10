@@ -8,7 +8,7 @@
             "title": "Job titles to find (searchTerms)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type the job titles or roles to find, one per line, for example software engineer or product designer. Wellfound's own role pages are read for them, and a job matches when its title has every word of a line: frontend also finds Front-End. Leave it empty to get the newest jobs of every kind. A pasted Wellfound search link (wellfound.com/role/l/software-engineer/san-francisco) works too.",
+            "description": "Type the job titles or roles to find, one per line, for example software engineer or product designer. Wellfound's own role pages are read for them, and a job matches when its title has every word of a line: frontend also finds Front-End. A place typed with the title works too: software engineer in San Francisco. Leave it empty to get the newest jobs of every kind. A pasted Wellfound search link (wellfound.com/role/l/software-engineer/san-francisco) works too.",
             "placeholderValue": "software engineer",
             "example": [
                 "software engineer"
@@ -56,20 +56,20 @@
             "title": "Job type (employmentType)",
             "type": "array",
             "editor": "select",
-            "description": "Pick the job types to keep: full-time, part-time, contract or intern. Leave it empty for every type, cofounder roles included. Wellfound states one type per job. Typed words such as internship or freelance work too.",
+            "description": "Pick the job types to keep: full-time, contract, intern or cofounder (a cofounder role at a startup, usually with equity). Leave it empty for every type. Wellfound states one type per job and has no part-time or temporary type. Typed words such as internship, freelance or co-founder work too.",
             "items": {
                 "type": "string",
                 "enumSuggestedValues": [
                     "full-time",
-                    "part-time",
                     "contract",
-                    "intern"
+                    "intern",
+                    "cofounder"
                 ],
                 "enumTitles": [
                     "Full-time",
-                    "Part-time",
                     "Contract",
-                    "Internship (intern)"
+                    "Internship (intern)",
+                    "Cofounder role (cofounder)"
                 ]
             },
             "example": [
