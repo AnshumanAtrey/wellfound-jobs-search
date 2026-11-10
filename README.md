@@ -190,7 +190,7 @@ Wellfound Jobs Scraper reads Wellfound's own role pages for what you type: softw
 
 ### How do places work?
 
-Wellfound has a page for 475 places: cities, US states, countries and regions. Wellfound Jobs Scraper reads the page of each place you type, and a country's page holds every town in it: on 2026-11-10 India's page held jobs in Sonipat, Vellore and HSR Layout. Bengaluru and Bangalore, NYC and New York City, SF and San Francisco all work, a region such as EMEA or APAC reads Wellfound's pages for its continents and countries, and an Indian town with no page of its own reads its state's.
+Wellfound has a page for 473 places: cities, US states, countries and regions. Wellfound Jobs Scraper reads the page of each place you type, and a country's page holds every town in it: on 2026-11-10 India's page held jobs in Sonipat, Vellore and HSR Layout. Bengaluru and Bangalore, NYC and New York City, SF and San Francisco all work, a region such as EMEA or APAC reads Wellfound's pages for its continents and countries, and an Indian town with no page of its own reads its state's.
 
 ### Which job types does Wellfound have?
 

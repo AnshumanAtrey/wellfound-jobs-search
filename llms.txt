@@ -4,7 +4,7 @@
 
 ## Summary
 
-Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searches Wellfound, the startup job board that was AngelList Talent, and returns each job's title, startup, places, remote or office setting, pay and equity, years of experience, startup size, stage and badges, posting date and link, newest first. It reads every page of a Wellfound search (role, place, role at a place, remote) and sorts the jobs by the moment each went live, where other Wellfound actors read 1 to 10 pages in Wellfound's own order. Typed titles go through Wellfound's 518 roles and typed places through its 475 place pages, so "software engineer" in "Bangalore" or "Remote India" works as typed. Full details add the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding. No login, no API key, no proxy by default.
+Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searches Wellfound, the startup job board that was AngelList Talent, and returns each job's title, startup, places, remote or office setting, pay and equity, years of experience, startup size, stage and badges, posting date and link, newest first. It reads every page of a Wellfound search (role, place, role at a place, remote) and sorts the jobs by the moment each went live, where other Wellfound actors read 1 to 10 pages in Wellfound's own order. Typed titles go through Wellfound's 518 roles and typed places through its 473 place pages, so "software engineer" in "Bangalore" or "Remote India" works as typed. Full details add the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding. No login, no API key, no proxy by default.
 
 ## Key features
 
