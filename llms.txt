@@ -6,6 +6,13 @@
 
 Wellfound Jobs Scraper (Apify actor anshumanatrey/wellfound-jobs-search) searches Wellfound, the startup job board that was AngelList Talent, and returns each job's title, startup, places, remote or office setting, pay and equity, years of experience, startup size, stage and badges, posting date and link, newest first. It reads every page of a Wellfound search (role, place, role at a place, remote) and sorts the jobs by the moment each went live, where other Wellfound actors read 1 to 10 pages in Wellfound's own order. Typed titles go through Wellfound's 518 roles and typed places through its 473 place pages, so "software engineer" in "Bangalore" or "Remote India" works as typed. Full details add the description, visa sponsorship, relocation, preferred time zones, skills, the startup's website, markets and funding. No login, no API key, no proxy by default.
 
+## Use it from an AI assistant
+
+- Claude (claude.ai and the desktop app): https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Wellfound%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fwellfound-jobs-search (click Continue, sign in to Apify, Allow).
+- Claude Code: claude mcp add --transport http wellfound-jobs-search "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search", then /mcp to sign in to Apify.
+- Codex: codex mcp add wellfound-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search", then codex mcp login wellfound-jobs-search.
+- Any other MCP client: https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search, signed in with Apify or Authorization: Bearer <APIFY_TOKEN>.
+
 ## Key features
 
 - Every page of each Wellfound search read, then newest first by the moment a job went live (or was reposted)

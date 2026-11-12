@@ -4,6 +4,13 @@ Wellfound jobs scraper and API for wellfound.com, formerly AngelList Talent: sea
 
 Use it as a Wellfound API with no login, an AngelList jobs scraper for remote startup jobs and tech jobs at YC and venture-backed startups, or a daily feed of new startup jobs from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the public search pages wellfound.com serves to every visitor, every page of each search. Available as an [Apify Actor](https://apify.com/anshumanatrey/wellfound-jobs-search). $0.0027 per job, $0.0029 with full details, $0.005 per run start, no login, no API key.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Wellfound Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Wellfound%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fwellfound-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http wellfound-jobs-search "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add wellfound-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search"`, then `codex mcp login wellfound-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Reads every page of a Wellfound search, then sorts it newest first.** Wellfound's search pages list startups in its own order, not by date: the newest jobs of a search sit on any of its pages (the 100 newest of the US search were spread over pages 1 to 132 of 167 on 2026-11-10). Wellfound Jobs Scraper reads all of them, so the first rows are the newest jobs of the whole search.
