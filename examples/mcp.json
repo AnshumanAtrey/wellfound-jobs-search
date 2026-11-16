@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "wellfound-jobs-search": {
+      "url": "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search",
+      "headers": {
+        "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+      }
+    }
+  }
+}
