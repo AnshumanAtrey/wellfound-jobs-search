@@ -102,6 +102,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Job type (`employmentType`) | full-time, contract, intern or cofounder; empty keeps every type |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days (the default), any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
+| Only new jobs (`onlyNewJobs`) | On: a run again returns only jobs no earlier run of it delivered, so a schedule never gets or pays for a job twice. Off by default |
 | Full details (`includeDetails`) | Adds the description, visa sponsorship, relocation, time zones, skills, the startup's website, markets and funding, and the city, region and country |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Lowest yearly pay (`minSalary`) | Keeps jobs whose pay range reaches it, in its currency: 150k USD, 20L INR, 60000 EUR |

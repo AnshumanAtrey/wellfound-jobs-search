@@ -101,7 +101,7 @@ Measured on Apify at the default 512 MB on 2026-11-10: the example input (softwa
 
 ## Keys (input)
 
-- Job titles to find (searchTerms), Where the job is (location), Remote or office (workType), Job type (employmentType), Posted in the last (postedWithin), Number of jobs (maxJobs), Full details (includeDetails), Leave out words (excludeTerms), Lowest yearly pay (minSalary), Company stage (companyStage), Experience (experienceYears), Descriptions too (searchDescriptions), Only these startups (companies), Job links to check (jobUrls), Connection (proxyConfiguration)
+- Job titles to find (searchTerms), Where the job is (location), Remote or office (workType), Job type (employmentType), Posted in the last (postedWithin), Number of jobs (maxJobs), Only new jobs (onlyNewJobs), Full details (includeDetails), Leave out words (excludeTerms), Lowest yearly pay (minSalary), Company stage (companyStage), Experience (experienceYears), Descriptions too (searchDescriptions), Only these startups (companies), Job links to check (jobUrls), Connection (proxyConfiguration)
 
 ## Differentiators vs alternatives
 
