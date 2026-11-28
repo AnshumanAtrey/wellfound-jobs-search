@@ -3,6 +3,7 @@
 [![Run on Apify](https://img.shields.io/badge/Run%20on-Apify-246DFF?style=for-the-badge)](https://apify.com/anshumanatrey/wellfound-jobs-search) [![Add to Claude](https://img.shields.io/badge/Add%20to-Claude-D97757?style=for-the-badge)](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Wellfound%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fwellfound-jobs-search) [![API examples](https://img.shields.io/badge/API-examples-24292F?style=for-the-badge)](examples)
 
 This repo is the public home of the [Wellfound Jobs Scraper & API - AngelList Startup Jobs, Equity](https://apify.com/anshumanatrey/wellfound-jobs-search) actor on Apify: its docs, API examples in [`examples/`](examples), MCP setup and issues. The actor runs on Apify; its source code is private.
+In Gemini CLI: `gemini extensions install https://github.com/AnshumanAtrey/wellfound-jobs-search` (asks for your Apify API token).
 
 Wellfound jobs scraper and API for wellfound.com, formerly AngelList Talent: search startup jobs by role, place and remote, newest first, and get each job's title, startup, places, remote or office setting, salary and equity, years of experience, startup size, stage and badges, posting date and link. Turn on full details for the description, visa sponsorship, relocation, preferred time zones, skills, the startup's markets and its funding.
 

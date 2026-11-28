@@ -1,0 +1,21 @@
+{
+  "name": "wellfound-jobs-search",
+  "version": "1.0.0",
+  "description": "Scrape Wellfound (AngelList) startup jobs by role, city and remote, newest first: salary, equity, startup stage, size and funding. No login or API key.",
+  "mcpServers": {
+    "wellfound-jobs-search": {
+      "httpUrl": "https://mcp.apify.com?tools=anshumanatrey/wellfound-jobs-search",
+      "headers": {
+        "Authorization": "Bearer ${APIFY_TOKEN}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "Apify API token",
+      "envVar": "APIFY_TOKEN",
+      "sensitive": true,
+      "description": "From Apify Console, Settings, API & Integrations. Runs bill to this account."
+    }
+  ]
+}
